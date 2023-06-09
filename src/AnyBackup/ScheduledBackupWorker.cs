@@ -13,11 +13,11 @@ public class ScheduledBackupWorker : BackgroundService
 
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
     {
-        await _fileService.DoAsync();
         while (!stoppingToken.IsCancellationRequested)
         {
+            await _fileService.DoAsync();
             _logger.LogInformation("Worker running at: {time}", DateTimeOffset.Now);
-            await Task.Delay(1000, stoppingToken);
+            await Task.Delay(600000, stoppingToken);
         }
     }
 
